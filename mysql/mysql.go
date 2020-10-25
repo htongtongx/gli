@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 
-	"black-hole.com/modules/conf"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/htongtongx/gli/conf"
 	"github.com/jmoiron/sqlx"
 )
 

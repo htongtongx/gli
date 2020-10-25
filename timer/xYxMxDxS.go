@@ -1,6 +1,6 @@
 package timer
 
-import "black-hole.com/modules/parse"
+import "github.com/htongtongx/gli/parse"
 
 const (
 

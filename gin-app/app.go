@@ -1,8 +1,8 @@
 package app
 
 import (
-	middleware "black-hole.com/modules/gin-app/middleware"
 	"github.com/gin-gonic/gin"
+	middleware "github.com/htongtongx/gli/gin-app/middleware"
 )
 
 func Fail(c *gin.Context, errCode int, errMsg string) {

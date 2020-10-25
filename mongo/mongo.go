@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 
-	"black-hole.com/modules/conf"
+	"github.com/htongtongx/gli/conf"
 )
 
 var Client *Mongo

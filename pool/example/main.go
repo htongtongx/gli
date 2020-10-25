@@ -8,7 +8,7 @@ import (
 	"syscall"
 	"time"
 
-	"black-hole.com/modules/pool"
+	"github.com/htongtongx/gli/pool"
 )
 
 const addr string = "127.0.0.1:8080"

@@ -5,7 +5,7 @@ import (
 	"net"
 	"time"
 
-	"black-hole.com/modules/pool"
+	"github.com/htongtongx/gli/pool"
 )
 
 var Pool pool.Pool

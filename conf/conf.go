@@ -8,10 +8,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"black-hole.com/modules/parse"
-	"black-hole.com/modules/redis"
-	"black-hole.com/modules/sms"
-	"black-hole.com/modules/util"
+	"github.com/htongtongx/gli/parse"
+	"github.com/htongtongx/gli/redis"
+	"github.com/htongtongx/gli/sms"
+	"github.com/htongtongx/gli/util"
 	"gopkg.in/ini.v1"
 )
 

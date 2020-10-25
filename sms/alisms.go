@@ -6,10 +6,10 @@ import (
 	"log"
 	"time"
 
-	"black-hole.com/modules/redis"
-	"black-hole.com/modules/timer"
-	"black-hole.com/modules/util"
 	"github.com/aliyun/alibaba-cloud-sdk-go/services/dysmsapi"
+	"github.com/htongtongx/gli/redis"
+	"github.com/htongtongx/gli/timer"
+	"github.com/htongtongx/gli/util"
 )
 
 // type NasCarrierType int

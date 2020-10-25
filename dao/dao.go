@@ -3,9 +3,9 @@ package dao
 import (
 	"fmt"
 
-	"black-hole.com/modules/conf"
-	"black-hole.com/modules/mongo"
-	"black-hole.com/modules/mysql"
+	"github.com/htongtongx/gli/conf"
+	"github.com/htongtongx/gli/mongo"
+	"github.com/htongtongx/gli/mysql"
 )
 
 type Dao struct {

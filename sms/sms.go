@@ -7,8 +7,8 @@ import (
 	"io/ioutil"
 	"time"
 
-	"black-hole.com/modules/cryptos"
 	"github.com/astaxie/beego/httplib"
+	"github.com/htongtongx/gli/cryptos"
 )
 
 const apiurl = "http://www.zhiliandaili.com/Wap/App/init"

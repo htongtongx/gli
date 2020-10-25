@@ -12,8 +12,8 @@ import (
 	"strconv"
 	"strings"
 
-	moduleRedis "black-hole.com/modules/redis"
 	"github.com/go-redis/redis"
+	moduleRedis "github.com/htongtongx/gli/redis"
 	"github.com/twmb/murmur3"
 )
 
