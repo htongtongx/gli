@@ -1,6 +1,8 @@
 package httplib
 
-import "net/url"
+import (
+	"net/url"
+)
 
 type FullURL struct {
 	URL    string
@@ -16,11 +18,11 @@ func NewFullURL(url string, params map[string]string) (fullURL *FullURL) {
 }
 
 func (u *FullURL) String() (urlStr string) {
-	params := url.Values{}
 	urlEntity, err := url.Parse(u.URL)
 	if err != nil {
 		return err.Error()
 	}
+	params := urlEntity.Query()
 	for k, v := range u.Params {
 		params.Set(k, v)
 	}
