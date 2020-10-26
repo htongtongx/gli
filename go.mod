@@ -1,6 +1,6 @@
 module github.com/htongtongx/gli
 
-go 1.13
+go 1.14
 
 require (
 	github.com/aliyun/alibaba-cloud-sdk-go v1.61.602
