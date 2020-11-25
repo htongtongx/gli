@@ -37,6 +37,7 @@ func NewAreaData() *AreaData {
 		}
 		for ccode, cname := range citys {
 			c.CodeNameMap[ccode] = cname
+			c.NameCodeMap[cname] = ccode
 			c.provinceCityMap[pcode] = append(c.provinceCityMap[pcode], region{Code: ccode, Name: cname})
 		}
 	}
