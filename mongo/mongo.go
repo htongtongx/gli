@@ -3,6 +3,7 @@ package mongo
 import (
 	"context"
 	"fmt"
+	"log"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -43,6 +44,7 @@ type MonDbStatInfo struct {
 
 func NewMongo(c *conf.MongoConf) (m *Mongo, err error) {
 	if !c.Verify() {
+		log.Println("mongodb配置未启用.")
 		return
 	}
 	url := fmt.Sprintf("mongodb://%s:%s@%s/?authSource=%s", c.User, c.Pwd, c.Node, c.Auth)
@@ -51,6 +53,9 @@ func NewMongo(c *conf.MongoConf) (m *Mongo, err error) {
 	m = new(Mongo)
 	m.c = c
 	m.Cli, err = mongo.Connect(ctx, options.Client().ApplyURI(url).SetMaxPoolSize(20))
+	if err != nil {
+		log.Println("mongodb连接失败")
+	}
 	return
 }
 func (m *Mongo) DB() string {
