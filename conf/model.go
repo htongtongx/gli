@@ -1,6 +1,7 @@
 package conf
 
 type MongoConf struct {
+	Enabled  bool   `ini:"enabled"`
 	Node     string `ini:"nodes"`
 	Pwd      string `ini:"pwd"`
 	User     string `ini:"user"`
@@ -12,7 +13,7 @@ type MongoConf struct {
 }
 
 func (m *MongoConf) Verify() bool {
-	if m.Node == "" {
+	if m.Node == "" || !m.Enabled {
 		return false
 	}
 	return true
@@ -21,6 +22,8 @@ func (m *MongoConf) Verify() bool {
 type JWTConf struct {
 	Secrets string `ini:"secrets"`
 	Exp     int64  `ini:"exp"`
+	Header  string `ini:"header"` //
+	Enabled bool   `ini:"enabled"`
 }
 
 type AlipayConf struct {
@@ -47,6 +50,7 @@ type LogConf struct {
 }
 
 type MysqlConf struct {
+	Enabled      bool   `ini:"enabled"`
 	Host         string `ini:"host"`
 	Pwd          string `ini:"pwd"`
 	User         string `ini:"user"`
@@ -57,7 +61,7 @@ type MysqlConf struct {
 }
 
 func (m *MysqlConf) Verify() bool {
-	if m.Host == "" {
+	if m.Host == "" || !m.Enabled {
 		return false
 	}
 	return true

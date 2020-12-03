@@ -3,6 +3,7 @@ package mysql
 import (
 	"database/sql"
 	"fmt"
+	"log"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/htongtongx/gli/conf"
@@ -21,18 +22,23 @@ type Mysql struct {
 
 func NewMysql(c *conf.MysqlConf) (m *Mysql, err error) {
 	if !c.Verify() {
+		log.Println("mysql配置未启用.")
 		return
 	}
-	fmt.Println(c)
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", c.User, c.Pwd, c.Host, c.Port, c.DB)
 	m = new(Mysql)
 	m.Cli, err = sqlx.Open("mysql", dsn)
+	if err != nil {
+		log.Println("mysql连接失败：" + err.Error())
+		return
+	}
 	if c.MaxIdleConns > 0 {
 		m.Cli.SetMaxIdleConns(c.MaxIdleConns)
 	}
 	if c.MaxOpenConns > 0 {
 		m.Cli.SetMaxOpenConns(c.MaxOpenConns)
 	}
+	log.Println("msyql连接成功!")
 	return
 }
 

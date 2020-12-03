@@ -2,12 +2,14 @@ package redis
 
 import (
 	"fmt"
+	"log"
 	"time"
 
 	"github.com/garyburd/redigo/redis"
 )
 
 type RedisConf struct {
+	Enabled  bool   `int:"enabled"`
 	URL      string `ini:"url"`
 	MaxIdle  int    `ini:"maxIdle"`  //最大空闲连接数
 	Password string `ini:"password"` //密码
@@ -19,6 +21,9 @@ type Redis struct {
 }
 
 func NewRedis(cfg *RedisConf) (r *Redis) {
+	if !cfg.Enabled {
+		log.Println("redis配置未启用.")
+	}
 	r = &Redis{}
 	r.cfg = cfg
 	r.cli = &redis.Pool{
