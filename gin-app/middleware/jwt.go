@@ -6,21 +6,33 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	"github.com/htongtongx/gli/conf"
 )
 
 var IngoreURL = make(map[string]int)
-var TokenHeader = "Authorization"
+var tokenHeader = "Authorization"
 
-func AuthToken(secrets, headerName string, isDev bool) gin.HandlerFunc {
+func GetToken(c *gin.Context, header string) string {
+	if header == "" {
+		header = tokenHeader
+	}
+	token := c.GetHeader(header)
+	if strings.HasPrefix(token, "Bearer ") {
+		token = strings.Replace(token, "Bearer ", "", 1)
+	}
+	return token
+}
+
+// func AuthToken(secrets, headerName string, isDev bool) gin.HandlerFunc {
+func AuthToken(jwtCfg *conf.JWTConf) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// ignore := isIgnore(c.FullPath())
+		if !jwtCfg.Enabled {
+			return
+		}
 		_, ok := IngoreURL[c.FullPath()]
 		if !ok {
-			authKey := c.GetHeader(headerName)
-			if strings.HasPrefix(authKey, "Bearer ") {
-				authKey = strings.Replace(authKey, "Bearer ", "", 1)
-			}
-			t, err := ParseToken(authKey, secrets)
+			authKey := GetToken(c, jwtCfg.Header)
+			t, err := ParseToken(authKey, jwtCfg.Secrets)
 			if err != nil {
 				c.AbortWithStatusJSON(200, gin.H{"code": 101, "msg": "token invalid" + err.Error()})
 				return
