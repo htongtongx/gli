@@ -23,7 +23,6 @@ func GetToken(c *gin.Context, header string) string {
 	return token
 }
 
-// func AuthToken(secrets, headerName string, isDev bool) gin.HandlerFunc {
 func AuthToken(jwtCfg *conf.JWTConf) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if !jwtCfg.Enabled {
