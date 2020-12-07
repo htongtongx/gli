@@ -20,5 +20,4 @@ require (
 	go.mongodb.org/mongo-driver v1.4.2
 	golang.org/x/crypto v0.0.0-20201016220609-9e8e0b390897
 	gopkg.in/ini.v1 v1.62.0
-	layeh.com/radius v0.0.0-20200828214147-d62a6e0a1819
 )

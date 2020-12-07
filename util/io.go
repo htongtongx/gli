@@ -10,23 +10,19 @@ import (
 )
 
 //解析text文件内容
-func ReadFile(path string) (str string, err error) {
+func ReadFile(path string) (content string, err error) {
 	//打开文件的路径
 	f, err := os.Open(path)
 	if err != nil {
-		fmt.Println("打开文件失败")
-		fmt.Println(err)
-	}
-	defer f.Close()
-	//读取文件的内容
-	fd, err := ioutil.ReadAll(f)
-	if err != nil {
-		fmt.Println("读取文件失败")
-		fmt.Println(err)
 		return "", err
 	}
-	str = string(fd)
-	return str, nil
+	defer f.Close()
+	contentByte, err := ioutil.ReadAll(f)
+	if err != nil {
+		return "", err
+	}
+	content = string(contentByte)
+	return
 }
 
 func ReadCsvFile(path string) (result [][]string) {
