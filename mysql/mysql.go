@@ -6,7 +6,7 @@ import (
 	"log"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/htongtongx/gli/conf"
+	"github.com/htongtongx/gli/gconf"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -17,10 +17,10 @@ type Mysql struct {
 	Node string
 	Pwd  string
 	User string
-	c    *conf.MysqlConf
+	c    *gconf.MysqlConf
 }
 
-func NewMysql(c *conf.MysqlConf) (m *Mysql, err error) {
+func NewMysql(c *gconf.MysqlConf) (m *Mysql, err error) {
 	if !c.Verify() {
 		log.Println("mysql配置未启用.")
 		return

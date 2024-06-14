@@ -6,11 +6,10 @@ import (
 	"log"
 	"time"
 
+	"github.com/htongtongx/gli/gconf"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-
-	"github.com/htongtongx/gli/conf"
 )
 
 var Client *Mongo
@@ -20,7 +19,7 @@ type Mongo struct {
 	Node string
 	Pwd  string
 	User string
-	c    *conf.MongoConf
+	c    *gconf.MongoConf
 }
 
 type DataFileVersion struct {
@@ -42,7 +41,7 @@ type MonDbStatInfo struct {
 	Ok          int16
 }
 
-func NewMongo(c *conf.MongoConf) (m *Mongo, err error) {
+func NewMongo(c *gconf.MongoConf) (m *Mongo, err error) {
 	if !c.Verify() {
 		log.Println("mongodb配置未启用.")
 		return
@@ -145,7 +144,7 @@ func (m *Mongo) UpdateMutil(dbname, collname string, filter interface{}, v inter
 }
 
 // Parameters:
-//  - page和limite都为0时获取全部数据
+//   - page和limite都为0时获取全部数据
 func (m *Mongo) SelectMutil(dbname, collname string, filter interface{}, sort bson.M, page, limit int64, results interface{}) (err error) {
 	collection, ctx, cancel := m.getCollection(dbname, collname)
 	defer cancel()

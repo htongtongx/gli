@@ -1,4 +1,4 @@
-package conf
+package gconf
 
 type MongoConf struct {
 	Enabled  bool   `ini:"enabled"`

@@ -6,7 +6,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	"github.com/htongtongx/gli/conf"
+	"github.com/htongtongx/gli/gconf"
 )
 
 var IngoreURL = make(map[string]int)
@@ -23,7 +23,7 @@ func GetToken(c *gin.Context, header string) string {
 	return token
 }
 
-func AuthToken(jwtCfg *conf.JWTConf) gin.HandlerFunc {
+func AuthToken(jwtCfg *gconf.JWTConf) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if !jwtCfg.Enabled {
 			return

@@ -3,7 +3,7 @@ package dao
 import (
 	"fmt"
 
-	"github.com/htongtongx/gli/conf"
+	"github.com/htongtongx/gli/gconf"
 	"github.com/htongtongx/gli/mongo"
 	"github.com/htongtongx/gli/mysql"
 )
@@ -13,7 +13,7 @@ type Dao struct {
 	My  *mysql.Mysql
 }
 
-func New(c *conf.Config) (dao *Dao) {
+func New(c *gconf.Config) (dao *Dao) {
 	mon, err := mongo.NewMongo(&c.Mongo)
 	if err != nil {
 		fmt.Println("mongo初始化失败：" + err.Error())
