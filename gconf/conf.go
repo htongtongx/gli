@@ -7,8 +7,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/htongtongx/gli/redis"
-	"github.com/htongtongx/gli/sms"
+	// "github.com/htongtongx/gli/sms"
 	"github.com/htongtongx/gli/util"
 	"gopkg.in/ini.v1"
 )
@@ -18,14 +17,14 @@ var runModeMap map[RunModeType]string
 type RunModeType string
 
 type Config struct {
-	Mongo     MongoConf       `ini:"mongo"`
-	Jwt       JWTConf         `ini:"jwt"`
-	Alipay    AlipayConf      `ini:"alipay"`
-	WXpay     WXpayConf       `ini:"wxpay"`
-	Log       LogConf         `ini:"log"`
-	Mysql     MysqlConf       `ini:"mysql"`
-	AliSMS    sms.AliSMSConf  `ini:"alisms"`
-	Redis     redis.RedisConf `ini:"redis"`
+	Mongo  MongoConf  `ini:"mongo"`
+	Jwt    JWTConf    `ini:"jwt"`
+	Alipay AlipayConf `ini:"alipay"`
+	WXpay  WXpayConf  `ini:"wxpay"`
+	Log    LogConf    `ini:"log"`
+	Mysql  MysqlConf  `ini:"mysql"`
+	// AliSMS    sms.AliSMSConf  `ini:"alisms"`
+	// Redis     redis.RedisConf `ini:"redis"`
 	IsProd    bool
 	IsWindows bool
 	IsTests   bool
