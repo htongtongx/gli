@@ -4,9 +4,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/htongtongx/gli/gconf"
+
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	"github.com/htongtongx/gli/gconf"
 )
 
 var IngoreURL = make(map[string]int)

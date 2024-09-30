@@ -1,8 +1,9 @@
 package app
 
 import (
-	"github.com/gin-gonic/gin"
 	middleware "github.com/htongtongx/gli/gin-app/middleware"
+
+	"github.com/gin-gonic/gin"
 )
 
 func Fail(c *gin.Context, errCode int, errMsg string) {

@@ -66,3 +66,17 @@ func (m *MysqlConf) Verify() bool {
 	}
 	return true
 }
+
+type SqliteConf struct {
+	Enabled bool   `ini:"enabled"`
+	Pwd     string `ini:"pwd"`
+	User    string `ini:"user"`
+	DBPath  string `ini:"db_path"`
+}
+
+func (m *SqliteConf) Verify() bool {
+	if m.DBPath == "" || !m.Enabled {
+		return false
+	}
+	return true
+}

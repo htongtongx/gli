@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"path/filepath"
 
 	// "github.com/htongtongx/gli/sms"
 	"github.com/htongtongx/gli/util"
+
 	"gopkg.in/ini.v1"
 )
 
@@ -25,6 +25,7 @@ type Config struct {
 	Mysql  MysqlConf  `ini:"mysql"`
 	// AliSMS    sms.AliSMSConf  `ini:"alisms"`
 	// Redis     redis.RedisConf `ini:"redis"`
+	Sqlite    SqliteConf `ini:"sqlite"`
 	IsProd    bool
 	IsWindows bool
 	IsTests   bool
@@ -32,11 +33,11 @@ type Config struct {
 	INICfg    *ini.File
 }
 
-// func (c *Config) NewJwt(key string) (jwt *JWTConf, err error) {
-// 	jwt = &JWTConf{}
-// 	err = c.INICfg.Section(key).MapTo(jwt)
-// 	return
-// }
+func (c *Config) NewJwt(key string) (jwt *JWTConf, err error) {
+	jwt = &JWTConf{}
+	err = c.INICfg.Section(key).MapTo(jwt)
+	return
+}
 
 // func (c *Config) NewAlipay(key string) (alipayCfg *AlipayConf, err error) {
 // 	alipayCfg = &AlipayConf{}
@@ -75,28 +76,28 @@ const (
 )
 
 func init() {
-	path, err := os.Executable()
-	if err != nil {
-		fmt.Println(err)
-	}
-	dir := filepath.Dir(path)
+	// path, err := os.Executable()
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+	// dir := filepath.Dir(path)
 
-	runModeMap = map[RunModeType]string{
-		RUNMODE_DEV:  "./dev.ini",
-		RUNMODE_PROD: dir + "/prod.ini",
-		RUNMODE_TEST: "../cmd/test.ini",
-	}
+	// runModeMap = map[RunModeType]string{
+	// 	RUNMODE_DEV:  "./dev.ini",
+	// 	RUNMODE_PROD: dir + "/prod.ini",
+	// 	RUNMODE_TEST: "../cmd/test.ini",
+	// }
 }
 
 func New(iniConf *ini.File, v interface{}) (c *Config, err error) {
 	c = &Config{}
-	c.RunMode = ChcekRunMode()
-	switch c.RunMode {
-	case RUNMODE_PROD:
-		c.IsProd = true
-	case RUNMODE_TEST:
-		c.IsTests = true
-	}
+	// c.RunMode = ChcekRunMode()
+	// switch c.RunMode {
+	// case RUNMODE_PROD:
+	// 	c.IsProd = true
+	// case RUNMODE_TEST:
+	// 	c.IsTests = true
+	// }
 	err = iniConf.MapTo(v)
 	if err != nil {
 		log.Println(err.Error())
@@ -136,12 +137,12 @@ func loadINIByMode(pathMap map[RunModeType]string) (*ini.File, error) {
 // path: ini 文件路径  v:需要加载配置的结构体指针
 func LoadINI(path string, v interface{}) (c *Config, err error) {
 	var iniCfg *ini.File
-	if path == "" {
-		iniCfg, err = loadINIByMode(runModeMap)
-	} else {
-		fmt.Println("加载自定义文件：" + path)
-		iniCfg, err = ini.Load(path[0])
-	}
+	// if path == "" {
+	// 	iniCfg, err = loadINIByMode(runModeMap)
+	// } else {
+	fmt.Println("加载自定义文件：" + path)
+	iniCfg, err = ini.Load(path[0])
+	// }
 	if err != nil {
 		return
 	}
