@@ -60,7 +60,7 @@ func (f *Filter) Range(k string, min, max interface{}, contain ...bool) *Filter 
 	return f
 }
 
-//pass等于true表示包含0
+// pass等于true表示包含0
 func (f *Filter) GT(k string, v interface{}, pass ...bool) *Filter {
 	can := f.checkPass(v, len(pass) > 0 && pass[0])
 	if can {
@@ -93,7 +93,7 @@ func (f *Filter) LTE(k string, v interface{}, pass ...bool) *Filter {
 	return f
 }
 
-//不等于
+// 不等于
 func (f *Filter) NE(k string, v interface{}, pass ...bool) *Filter {
 	can := f.checkPass(v, len(pass) > 0 && pass[0])
 	if can {
@@ -135,11 +135,11 @@ func (f *Filter) Search(k, regex string) *Filter {
 	if regex == "" {
 		return f
 	}
-	f.D = append(f.D, bson.E{Key: k, Value: bson.M{"$regex": regex, "$options": "$i"}})
+	f.D = append(f.D, bson.E{Key: k, Value: bson.M{"$regex": regex, "$options": "i"}})
 	return f
 }
 
-//date的参数格式请务必为“2006-01”
+// date的参数格式请务必为“2006-01”
 func (f *Filter) AddMonth(k, date string) *Filter {
 	if date == "" {
 		return f
